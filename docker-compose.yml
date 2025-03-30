@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      TZ: UTC
+    ports:
+      - "5432:5432"
+
+  api:
+    env_file:
+      - .env
+    environment:
+      PG_USER: postgres
+      PG_PASSWORD: password
+      PG_HOST: db
+      PG_PORT: 5432
+      PG_DATABASE: visadevjobs_development
+      RAILS_ENV: development
+      TZ: UTC
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

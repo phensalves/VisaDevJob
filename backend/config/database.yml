@@ -1,0 +1,41 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  username: <%= ENV.fetch("PG_USER") %>
+  password: <%= ENV.fetch("PG_PASSWORD") %>
+  host: <%= ENV.fetch("PG_HOST") %>
+  port: <%= ENV.fetch("PG_PORT", 5432) %>
+  variables:
+    statement_timeout: 5000
+    timezone: 'UTC'
+
+development:
+  <<: *default
+  database: visadevjob_development
+
+test:
+  <<: *default
+  database: visadevjob_test
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: visadevjob_production
+    username: visadevjob
+    password: <%= ENV["VISADEVJOB_DATABASE_PASSWORD"] %>
+    host: <%= ENV["VISADEVJOB_DATABASE_HOST"] %>
+    port: <%= ENV["VISADEVJOB_DATABASE_PORT"] %>
+  cache:
+    <<: *primary_production
+    database: visadevjob_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: visadevjob_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: visadevjob_production_cable
+    migrations_paths: db/cable_migrate
