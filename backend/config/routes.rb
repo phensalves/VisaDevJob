@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     get "ping", to: "health#ping"
+    get "jobs", to: "jobs#index"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

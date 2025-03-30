@@ -7,3 +7,19 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+
+require 'faker'
+
+10_000.times do
+  Job.insert_all(
+    [
+      title: Faker::Job.title,
+      company: Faker::Company.name,
+      country: %w[Canada UK Germany Netherlands Poland Portugal Germany].sample,
+      stack: %w[ruby go python].sample,
+      remote_policy: %w[Remote Hybrid On-site].sample,
+      published_at: Faker::Date.between(from: 1.year.ago, to: Date.today)
+    ]
+  )
+end
