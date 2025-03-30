@@ -22,23 +22,24 @@ docker-compose.override.yml
 **/.byebug_history
 
 # Rails (backend/)
-backend/db/*.sqlite3
-backend/db/*.sqlite3-journal
-backend/db/schema.rb
-backend/db/structure.sql
-backend/storage/*
-backend/tmp/*
-backend/log/*
-backend/.env
-backend/.byebug_history
-backend/public/assets
-backend/public/packs
-backend/public/packs-test
-backend/yarn-error.log
-backend/.node_modules
-backend/.sass-cache
-backend/.cache
-backend/vendor/bundle
+/backend/db/*.sqlite3
+/backend/db/*.sqlite3-journal
+/backend/db/schema.rb
+/backend/db/structure.sql
+/backend/storage/*
+/backend/tmp/*
+!/backend/.keep
+/backend/log/*
+/backend/.env
+/backend/.byebug_history
+/backend/public/assets
+/backend/public/packs
+/backend/public/packs-test
+/backend/yarn-error.log
+/backend/.node_modules
+/backend/.sass-cache
+/backend/.cache
+/backend/vendor/bundle
 
 # Python (services/job_scraper/)
 services/job_scraper/__pycache__/

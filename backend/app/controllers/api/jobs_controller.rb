@@ -6,7 +6,7 @@ class Api::JobsController < ApplicationController
     jobs = jobs.jobs_by_stack(job_params[:stack]) if job_params[:stack].present?
     jobs = jobs.paginate(job_params[:page] || 1, job_params[:per_page] || 10) # Pagination ensures only a subset is loaded
 
-    render json: jobs, status: :ok
+    render json: jobs.map(&:to_public_json), status: :ok
   end
 
   private
