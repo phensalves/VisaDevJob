@@ -15,3 +15,4 @@ class Api::JobsController < ApplicationController
     params.permit(:query, :country, :stack, :page, :per_page).to_h.symbolize_keys
   end
 end
+
